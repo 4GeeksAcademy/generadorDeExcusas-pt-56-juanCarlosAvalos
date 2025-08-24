@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="./assets/img/4geeks.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello Rigo with Vanilla.js</title>
+    <title>Generador de Excusas - 4Geeks Academy</title>
     
-
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Fontawesome is our recommended library for icons -->
     <link
       rel="stylesheet"
@@ -14,26 +15,115 @@
       integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
       crossorigin="anonymous"
     />
+    
+    <style>
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        font-family: 'Arial', sans-serif;
+      }
+      
+      .excuse-container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 40px;
+        margin-top: 50px;
+      }
+      
+      .excuse-text {
+        font-size: 24px;
+        font-weight: 600;
+        color: #2c3e50;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        line-height: 1.6;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .btn-generate {
+        background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        border: none;
+        padding: 15px 40px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 50px;
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+      }
+      
+      .btn-generate:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        background: linear-gradient(45deg, #ee5a52, #ff6b6b);
+      }
+      
+      .title {
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 30px;
+        font-weight: 700;
+      }
+      
+      .icon-excuse {
+        font-size: 60px;
+        color: #ff6b6b;
+        margin-bottom: 20px;
+      }
+      
+      .loading {
+        opacity: 0.6;
+        transform: scale(0.95);
+        transition: all 0.3s ease;
+      }
+    </style>
   </head>
   <body>
-    <!-- Write your HTML code here, you can delete everything within the body tags -->
-    <div>
-      <h1>Generador de Excusas</h1>
-      <img src="./assets/img/rigo-baby.jpg" />
+    <div class="container-fluid text-center">
+      <h1 class="title mt-5">🎭 Generador de Excusas</h1>
+      <h4 class="text-white mb-5">¿Necesitas una excusa perfecta? ¡Aquí la tienes!</h4>
       
-      <!-- Excusa inicial en HTML puro -->
-      <p id="excuse">My dog ate my homework before the class</p>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6">
+            <div class="excuse-container">
+              <i class="fas fa-theater-masks icon-excuse"></i>
+              
+              <!-- Excusa inicial en HTML puro -->
+              <p id="excuse" class="excuse-text">
+                My dog ate my homework before the class
+              </p>
+              
+              <button id="generateBtn" class="btn btn-generate mt-4" onclick="generateExcuse()">
+                <i class="fas fa-sync-alt me-2"></i>
+                Generar Nueva Excusa
+              </button>
+              
+              <div class="mt-4">
+                <small class="text-muted">
+                  <i class="fas fa-lightbulb me-1"></i>
+                  Haz clic en el botón para generar excusas aleatorias
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
-      <button onclick="generateExcuse()">Generar Nueva Excusa</button>
-      
-      <div>
-        Made with ❤️ by
-        <a href="https://www.4geeksacademy.com">4Geeks Academy</a>
+      <div class="fixed-bottom p-4">
+        <p class="text-white mb-0">
+          Made with ❤️ by
+          <a href="https://www.4geeksacademy.com" class="text-white fw-bold text-decoration-none">4Geeks Academy</a>
+        </p>
       </div>
     </div>
 
     <script>
-      // Arrays con más de 10 opciones para generar excusas variadas
+      // Arrays con más de 10 opciones cada uno para generar excusas variadas
       let who = [
         'The dog', 'My grandma', 'The mailman', 'My bird', 'The cat',
         'My little brother', 'The neighbor', 'A squirrel', 'My hamster',
@@ -77,8 +167,21 @@
       // Función para actualizar la excusa en el HTML
       function generateExcuse() {
         let excuseElement = document.getElementById('excuse');
-        let newExcuse = generateRandomExcuse();
-        excuseElement.innerHTML = newExcuse;
+        let button = document.getElementById('generateBtn');
+        
+        // Agregar efecto de loading
+        button.classList.add('loading');
+        excuseElement.style.opacity = '0.5';
+        
+        // Simular un pequeño delay para el efecto
+        setTimeout(() => {
+          let newExcuse = generateRandomExcuse();
+          excuseElement.innerHTML = newExcuse;
+          
+          // Remover efecto de loading
+          button.classList.remove('loading');
+          excuseElement.style.opacity = '1';
+        }, 300);
       }
 
       // Función onload para establecer la primera excusa aleatoria

@@ -5,8 +5,9 @@
     <link rel="icon" href="./assets/img/4geeks.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello Rigo with Vanilla.js</title>
+    
 
-    <!-- Fontawesome is our recomended library for icons -->
+    <!-- Fontawesome is our recommended library for icons -->
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
@@ -15,21 +16,75 @@
     />
   </head>
   <body>
-    <!-- Write your HTML code here, you can delete everything withing the body tags -->
-    <div class="container-fluid text-center">
-      <h1 class="mt-5">Hello Rigo!</h1>
+    <!-- Write your HTML code here, you can delete everything within the body tags -->
+    <div>
+      <h1>Generador de Excusas</h1>
       <img src="./assets/img/rigo-baby.jpg" />
-      <p class="alert alert-warning mt-4">
-        If this text is <b>not</b> centered and <b>yellow</b>, you probably have
-        an error
-      </p>
-      <div class="fixed-bottom p-4">
+      
+      <!-- Excusa inicial en HTML puro -->
+      <p id="excuse">My dog ate my homework before the class</p>
+      
+      <button onclick="generateExcuse()">Generar Nueva Excusa</button>
+      
+      <div>
         Made with ❤️ by
         <a href="https://www.4geeksacademy.com">4Geeks Academy</a>
       </div>
     </div>
 
-    <!-- Do not delete this script tag, this is what connects your HTML with the Javascript code -->
-    <script type="module" src="/app.js"></script>
+    <script>
+      // Arrays con más de 10 opciones para generar excusas variadas
+      let who = [
+        'The dog', 'My grandma', 'The mailman', 'My bird', 'The cat',
+        'My little brother', 'The neighbor', 'A squirrel', 'My hamster',
+        'The delivery guy', 'My cousin', 'A raccoon', 'The janitor',
+        'My pet turtle', 'A mysterious stranger'
+      ];
+      
+      let action = [
+        'ate', 'peed', 'crushed', 'broke', 'stole', 'hid', 'destroyed',
+        'chewed', 'spilled coffee on', 'threw away', 'lost', 'stepped on',
+        'sat on', 'scratched', 'knocked over'
+      ];
+      
+      let what = [
+        'my homework', 'my phone', 'the car', 'my laptop', 'my backpack',
+        'my notebook', 'my project', 'my presentation', 'my flash drive',
+        'my textbook', 'my calculator', 'my assignment', 'my report',
+        'my essay', 'my research papers'
+      ];
+      
+      let when = [
+        'before the class', 'when I was sleeping', 'while I was exercising',
+        'during my lunch', 'while I was praying', 'right before the deadline',
+        'when I was in the bathroom', 'during the power outage',
+        'while I was helping my mom', 'during the thunderstorm',
+        'when I was walking to school', 'at exactly midnight',
+        'during my favorite TV show', 'while I was studying for another exam',
+        'when I left it on the table'
+      ];
+
+      // Función para generar una excusa aleatoria
+      function generateRandomExcuse() {
+        let randomWho = who[Math.floor(Math.random() * who.length)];
+        let randomAction = action[Math.floor(Math.random() * action.length)];
+        let randomWhat = what[Math.floor(Math.random() * what.length)];
+        let randomWhen = when[Math.floor(Math.random() * when.length)];
+        
+        return randomWho + ' ' + randomAction + ' ' + randomWhat + ' ' + randomWhen;
+      }
+
+      // Función para actualizar la excusa en el HTML
+      function generateExcuse() {
+        let excuseElement = document.getElementById('excuse');
+        let newExcuse = generateRandomExcuse();
+        excuseElement.innerHTML = newExcuse;
+      }
+
+      // Función onload para establecer la primera excusa aleatoria
+      window.onload = function() {
+        generateExcuse();
+      }
+    </script>
   </body>
 </html>

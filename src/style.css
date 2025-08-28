@@ -1,5 +1,70 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
 
-body{
-    background: white;
+.excuse-container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  margin-top: 50px;
+}
+
+.excuse-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2c3e50;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn-generate {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+  border: none;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 50px;
+  color: white !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+}
+
+.btn-generate:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+  background: linear-gradient(45deg, #ee5a52, #ff6b6b);
+  color: white !important;
+}
+
+.btn-generate:focus {
+  color: white !important;
+  box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+}
+
+.title {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.icon-excuse {
+  font-size: 60px;
+  color: #ff6b6b;
+  margin-bottom: 20px;
+}
+
+.loading {
+  opacity: 0.6;
+  transform: scale(0.95);
+  transition: all 0.3s ease;
 }
